@@ -16,6 +16,7 @@ namespace Vidly_MVC.Models
         public bool IsSubscribeToNewLeter { get; set; }
         public MembershipType MembershipType { get; set; }
         public byte MembershipTypeId { get; set; }
+        public DateTime? DateOfBirth { get; set; }
 
     }
 }
