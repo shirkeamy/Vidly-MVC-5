@@ -1,0 +1,28 @@
+﻿@model IEnumerable<Vidly_MVC.Models.Customer>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Customers</h2>
+
+@if (!Model.Any())
+{
+    <p>No Custers added yet!</p>
+}
+
+<table class="table table-bordered table-responsive table-striped" >
+    <tr>
+        <th>
+            Customers
+        </th>
+    </tr>
+    @foreach (var customer in Model)
+    {
+        <tr>
+            <td>
+                @Html.ActionLink(customer.Name, "Details", "Customers", new { id = customer.Id }, null)
+            </td>
+        </tr>
+
+    }
+</table>
