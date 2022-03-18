@@ -211,6 +211,10 @@
     <Compile Include="Migrations\202203181419154_UpdateDateOfBith.Designer.cs">
       <DependentUpon>202203181419154_UpdateDateOfBith.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202203181428376_AddAdditionalFieldsToMoviesTable.cs" />
+    <Compile Include="Migrations\202203181428376_AddAdditionalFieldsToMoviesTable.Designer.cs">
+      <DependentUpon>202203181428376_AddAdditionalFieldsToMoviesTable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Customer.cs" />
@@ -326,6 +330,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202203181419154_UpdateDateOfBith.resx">
       <DependentUpon>202203181419154_UpdateDateOfBith.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202203181428376_AddAdditionalFieldsToMoviesTable.resx">
+      <DependentUpon>202203181428376_AddAdditionalFieldsToMoviesTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
