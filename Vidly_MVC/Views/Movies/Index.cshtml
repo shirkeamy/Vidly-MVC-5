@@ -13,16 +13,16 @@
 
     <table class="table table-bordered table-responsive table-striped">
         <tr>
-            <th>
-                Customers
-            </th>
+            <th>Customers</th>
+            <th>Gener</th>
         </tr>
         @foreach (var movie in Model)
         {
             <tr>
                 <td>
-                    @movie.Name
+                    @Html.ActionLink(movie.Name,"Details","Movies",new { id=movie.Id},null)
                 </td>
+                <td></td>
             </tr>
 
         }
