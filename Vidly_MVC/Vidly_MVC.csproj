@@ -215,6 +215,10 @@
     <Compile Include="Migrations\202203181428376_AddAdditionalFieldsToMoviesTable.Designer.cs">
       <DependentUpon>202203181428376_AddAdditionalFieldsToMoviesTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202203181430475_UpdateMoviesDates.cs" />
+    <Compile Include="Migrations\202203181430475_UpdateMoviesDates.Designer.cs">
+      <DependentUpon>202203181430475_UpdateMoviesDates.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Customer.cs" />
@@ -333,6 +337,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202203181428376_AddAdditionalFieldsToMoviesTable.resx">
       <DependentUpon>202203181428376_AddAdditionalFieldsToMoviesTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202203181430475_UpdateMoviesDates.resx">
+      <DependentUpon>202203181430475_UpdateMoviesDates.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
