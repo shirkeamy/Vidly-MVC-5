@@ -223,6 +223,14 @@
     <Compile Include="Migrations\202203181451151_AddGenresTable.Designer.cs">
       <DependentUpon>202203181451151_AddGenresTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202203181454066_PopulateGenresTable.cs" />
+    <Compile Include="Migrations\202203181454066_PopulateGenresTable.Designer.cs">
+      <DependentUpon>202203181454066_PopulateGenresTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202203181503226_PopulateDataToGenre.cs" />
+    <Compile Include="Migrations\202203181503226_PopulateDataToGenre.Designer.cs">
+      <DependentUpon>202203181503226_PopulateDataToGenre.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Customer.cs" />
@@ -349,6 +357,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202203181451151_AddGenresTable.resx">
       <DependentUpon>202203181451151_AddGenresTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202203181454066_PopulateGenresTable.resx">
+      <DependentUpon>202203181454066_PopulateGenresTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202203181503226_PopulateDataToGenre.resx">
+      <DependentUpon>202203181503226_PopulateDataToGenre.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
