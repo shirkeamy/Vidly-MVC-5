@@ -5,6 +5,7 @@ using System.Web;
 using System.Data.Entity;
 using System.Web.Mvc;
 using Vidly_MVC.Models;
+using Vidly_MVC.ViewModels;
 
 namespace Vidly_MVC.Controllers
 {
@@ -35,6 +36,51 @@ namespace Vidly_MVC.Controllers
             else
                 return View(customer);
         }
-        
+
+        public ActionResult New()
+        {
+            var membershipType = _context.MembershipTypes.ToList();
+            var viewModel = new CustometFormViewModel
+            {
+                MembershipTypes=membershipType,
+                Customer=new Customer()
+            };
+
+            return View(viewModel);
+        }
+
+        [HttpPost]
+        public ActionResult Save(Customer customer)
+        {
+            if (customer.Id==0)
+            {
+                _context.Customers.Add(customer);
+            }
+            else
+            {
+                var customerInDb = _context.Customers.Single(c => c.Id == customer.Id);
+                customerInDb.Name = customer.Name;
+                customerInDb.DateOfBirth = customer.DateOfBirth;
+                customerInDb.MembershipTypeId = customer.MembershipTypeId;
+                customerInDb.IsSubscribeToNewLeter = customer.IsSubscribeToNewLeter;
+            }
+            _context.SaveChanges();
+            return RedirectToAction("Index","Customers");
+        }
+
+        public ActionResult Edit(int id)
+        {
+            var customer = _context.Customers.SingleOrDefault(c => c.Id==id);
+            if (customer == null)
+                return HttpNotFound();
+            
+            var viewModel = new CustometFormViewModel
+            {
+                MembershipTypes = _context.MembershipTypes.ToList(),
+                Customer = customer
+            };
+            return View("New", viewModel);
+        }
+
     }
 }
