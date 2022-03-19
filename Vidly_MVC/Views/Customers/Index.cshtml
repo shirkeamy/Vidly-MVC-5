@@ -5,12 +5,16 @@
 
 <h2>Customers</h2>
 
+@Html.ActionLink("New Customers", "New", "Customer", null, new { @class = "btn btn-primary" })
+
+<br /><br />
+
 @if (!Model.Any())
 {
     <p>No Custers added yet!</p>
 }
 
-<table class="table table-bordered table-responsive table-striped" >
+<table class="table table-bordered table-responsive table-striped">
     <tr>
         <th>Customers</th>
         <th>Membership Type</th>

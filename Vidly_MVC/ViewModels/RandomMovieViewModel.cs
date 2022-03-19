@@ -10,6 +10,8 @@ namespace Vidly_MVC.ViewModels
     {
         public Movies Movie { get; set; }
         public List<Customer> Customers { get; set; }
+        public List<Genre> Genres { get; set; }
+
 
     }
 }
