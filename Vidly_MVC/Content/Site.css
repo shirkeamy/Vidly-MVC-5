@@ -29,3 +29,6 @@ textarea {
 .input-validation-error {
     border-color: red !important;
 }
+.validation-summary-errors {
+    color: red !important;
+}
