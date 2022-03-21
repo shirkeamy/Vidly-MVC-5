@@ -47,6 +47,7 @@ namespace Vidly_MVC.Controllers
             return View(viewModel);
         }
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Save(RandomMovieViewModel viewModel)
         {
             if (viewModel.Movie.Id == 0)
