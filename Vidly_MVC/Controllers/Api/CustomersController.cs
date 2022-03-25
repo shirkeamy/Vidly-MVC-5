@@ -49,16 +49,16 @@ namespace Vidly_MVC.Controllers.Api
         }
 
         [HttpPut]
-        public void UpdateCustomer(int id,Customer customer)
+        public IHttpActionResult UpdateCustomer(int id,Customer customer)
         {
 
             if (!ModelState.IsValid)
-                throw new HttpResponseException(HttpStatusCode.BadRequest);
+                return BadRequest();
 
             var customerInDb = _context.Customers.SingleOrDefault(c => c.Id == id);
 
             if (customerInDb == null)
-                throw new HttpResponseException(HttpStatusCode.NotFound);
+                return NotFound();
 
             customerInDb.Name = customer.Name;
             customerInDb.DateOfBirth = customer.DateOfBirth;
@@ -66,18 +66,22 @@ namespace Vidly_MVC.Controllers.Api
             customerInDb.IsSubscribeToNewLeter = customer.IsSubscribeToNewLeter;
 
             _context.SaveChanges();
+
+            return Ok(customer);
         }
 
         [HttpDelete]
-        public void DeleteCustomer(int id)
+        public IHttpActionResult DeleteCustomer(int id)
         {
             var customerInDb = _context.Customers.SingleOrDefault(c => c.Id == id);
 
             if (customerInDb == null)
-                throw new HttpResponseException(HttpStatusCode.NotFound);
+                return NotFound();
 
             _context.Customers.Remove(customerInDb);
             _context.SaveChanges();
+
+            return Ok(customerInDb);
 
         }
 

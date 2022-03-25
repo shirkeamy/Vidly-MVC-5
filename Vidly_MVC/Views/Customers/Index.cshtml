@@ -14,7 +14,7 @@
     <p>No Custers added yet!</p>
 }
 
-<table class="table table-bordered table-responsive table-striped">
+<table id="customers" class="table table-bordered table-responsive table-striped">
     <tr>
         <th>Customers</th>
         <th>Membership Type</th>
@@ -29,8 +29,33 @@
             <td>
                 @customer.MembershipType.Name
             </td>
-            <td>@Html.ActionLink("Edit", "Edit", "Customers", new { id = customer.Id }, null)</td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", "Customers", new { id = customer.Id }, null)
+                <button data-customer-id="@customer.Id" class="btn-link js-delete">Delete</button>
+            </td>
         </tr>
 
     }
 </table>
+
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            $("#customers .js-delete").on("click", function () {
+                var button = $(this);
+                if (confirm("Are you sure to delete this customer?")) {
+                    $.ajax({
+                        url: '/api/customers/' + button.attr("data-customer-id"),
+                        method: 'DELETE',
+                        success: function () {
+                            button.parents("tr").remove();
+                        },
+                        error: function () {
+
+                        }
+                    });
+                }
+            });
+        });
+    </script>
+}
