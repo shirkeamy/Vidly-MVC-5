@@ -17,34 +17,35 @@ namespace Vidly_MVC.Controllers.Api
         }
 
         //GET /api/customers
-        public IEnumerable<Customer> GetCustomers()
+        public IHttpActionResult GetCustomers()
         {
-            return _context.Customers.ToList();
+            var customers = _context.Customers.ToList();
+
+            return Ok(customers);
         }
 
         //GET /api/customer/1
-        public Customer GetCustomer(int id)
+        public IHttpActionResult GetCustomer(int id)
         {
             var customer = _context.Customers.SingleOrDefault(c=>c.Id==id);
 
             if (customer == null)
-                throw new HttpResponseException(HttpStatusCode.NotFound);
+                return NotFound();
 
-            return customer;
+            return Ok(customer);
         }
 
-        // POST /api/customer
+        // POST /api/customers
         [HttpPost]
-        [Route("api/customer")]
-        public Customer CreateCustomer(Customer customer)
+        public IHttpActionResult CreateCustomer(Customer customer)
         {
             if (!ModelState.IsValid)
-                throw new HttpResponseException(HttpStatusCode.BadRequest);
+                return BadRequest();
 
             _context.Customers.Add(customer);
             _context.SaveChanges();
 
-            return customer;
+            return Created(new Uri(Request.RequestUri + "/"+customer.Id),customer);
         }
 
         [HttpPut]
