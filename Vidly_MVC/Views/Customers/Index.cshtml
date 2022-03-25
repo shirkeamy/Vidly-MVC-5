@@ -43,18 +43,20 @@
         $(document).ready(function () {
             $("#customers .js-delete").on("click", function () {
                 var button = $(this);
-                if (confirm("Are you sure to delete this customer?")) {
-                    $.ajax({
-                        url: '/api/customers/' + button.attr("data-customer-id"),
-                        method: 'DELETE',
-                        success: function () {
-                            button.parents("tr").remove();
-                        },
-                        error: function () {
+                bootbox.confirm("Are you sure to delete this customer?", function (result) {
+                    if (result) {
+                        $.ajax({
+                            url: '/api/customers/' + button.attr("data-customer-id"),
+                            method: 'DELETE',
+                            success: function () {
+                                button.parents("tr").remove();
+                            },
+                            error: function () {
 
-                        }
-                    });
-                }
+                            }
+                        });
+                    }
+                });
             });
         });
     </script>
