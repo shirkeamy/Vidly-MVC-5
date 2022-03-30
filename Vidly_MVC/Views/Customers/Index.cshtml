@@ -1,5 +1,4 @@
-﻿@model IEnumerable<Vidly_MVC.Models.Customer>
-@{
+﻿@{
     ViewBag.Title = "Index";
 }
 
@@ -9,39 +8,42 @@
 
 <br /><br />
 
-@if (!Model.Any())
-{
-    <p>No Custers added yet!</p>
-}
-
-<table id="customers" class="table table-bordered table-responsive table-striped">
-    <tr>
-        <th>Customers</th>
-        <th>Membership Type</th>
-        <th>Action</th>
-    </tr>
-    @foreach (var customer in Model)
-    {
+<table id="customers" class="table table-bordered table-hover">
+    <thead>
         <tr>
-            <td>
-                @Html.ActionLink(customer.Name, "Details", "Customers", new { id = customer.Id }, null)
-            </td>
-            <td>
-                @customer.MembershipType.Name
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", "Customers", new { id = customer.Id }, null)
-                <button data-customer-id="@customer.Id" class="btn-link js-delete">Delete</button>
-            </td>
+            <th>Customers</th>
+            <th>Membership Type</th>
+            <th>Action</th>
         </tr>
-
-    }
+    </thead>
+    <tbody>
+    </tbody>
 </table>
 
 @section scripts{
     <script>
         $(document).ready(function () {
-            $("#customers").DataTable();
+            var custTable = $("#customers").DataTable({
+                ajax: {
+                    url: "/api/customers/",
+                    dataSrc:""
+                },
+                columns: [
+                    {
+                        data: "name"
+                    },
+                    {
+                        data:"membershipType.name"
+                    },
+                    {
+                        data: "id",
+                        render: function (data, type, customer) {
+                            return "<a href='/customers/edit/" + customer.id + "'>Edit</a>" +
+                                "<button class='btn-link js-delete' data-customer-id=" + data + ">Delete</button>";
+                        }
+                    }
+                ]
+            });
 
             $("#customers").on("click",".js-delete", function () {
                 var button = $(this);
@@ -51,7 +53,7 @@
                             url: '/api/customers/' + button.attr("data-customer-id"),
                             method: 'DELETE',
                             success: function () {
-                                button.parents("tr").remove();
+                                custTable.row(button.parents("tr")).remove().draw();
                             },
                             error: function () {
 
